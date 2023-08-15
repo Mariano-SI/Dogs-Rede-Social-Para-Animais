@@ -1,17 +1,25 @@
 import React from 'react'
+import { ReactComponent as Dogs } from "../../Assets/dogs.svg";
+import { ReactComponent as Usuario } from "../../Assets/usuario.svg";
 
 import { Link } from 'react-router-dom'
+import { HeaderStyled } from './Header.style';
 
 type Props = {}
 
-function Header(props: Props){
+function Header(props: Props):JSX.Element{
   return (
-    <div>
-        <nav className='container'>
-            <Link to="/">Home</Link>
-            <Link to="/login">Login /Criar</Link>
+    <HeaderStyled>
+        <nav className='container nav' aria-label='Dogs - Home'>
+            <Link to="/" className='logo'>
+              <Dogs/>
+            </Link>
+            <Link className='login' to="/login">
+              Login /Criar 
+              <Usuario className="userIcon"/>
+            </Link>
         </nav>
-    </div>
+    </HeaderStyled>
   )
 }
 
