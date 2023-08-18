@@ -1,5 +1,6 @@
-import React, { createContext, useState } from 'react'
-import { GET_USER, TOKEN_POST } from './Common/api';
+import React, { createContext, useCallback, useEffect, useState } from 'react'
+import { GET_USER, TOKEN_POST, VALIDATE_TOKEN } from './Common/api';
+import { useNavigate } from 'react-router-dom';
 
 interface IUserContext{
     children:React.ReactNode
@@ -16,9 +17,47 @@ export const UserContext = createContext();
 
 export function UserStorage({children}: IUserContext){
   const [userData, setUserData] = useState<UserInfos|null>(null);
-  const [logged, setLogged] = useState<boolean|null>(null);
+  const [logged, setLogged] = useState<boolean|null>(null); //login, setLogin
   const [ loading, setLoading] = useState<boolean>(false);
   const [ error, setError] = useState(null);
+  
+  const navigate =  useNavigate();
+  
+  const userLogout = useCallback(async function userLogout(){
+    setUserData(null);
+    setError(null);
+    setLoading(false);
+    setLogged(false);
+    window.localStorage.setItem("token", '');
+    navigate('/login')
+  }, [navigate]);
+
+  useEffect(()=>{
+    async function autoLogin() {
+      const token = window.localStorage.getItem("token");
+      if(token){
+        try{
+          setError(null);
+          setLoading(true);
+
+          const {url, options} = VALIDATE_TOKEN(token);
+          const response = await fetch(url, options);
+
+          if(!response.ok) throw new Error('Token inválido')
+          
+          await getUser(token);
+        }catch(error){
+          userLogout();
+        }finally{
+          setLoading(false);
+        }
+        
+      }
+    }
+    autoLogin();
+  },[userLogout])
+
+
 
   async function getUser(token:string){
     const {url, options} = GET_USER(token);
@@ -27,21 +66,34 @@ export function UserStorage({children}: IUserContext){
     const json = await userResponse.json();
 
     setUserData(json);
-    setLogged(true);
-    console.log(json)
-    
+    setLogged(true); 
   }
+
   async function userLogin(username:string, password:string) {
-    const {url, options} = TOKEN_POST({username, password});
+    try {
+      setError(null);
+      setLoading(true);
 
-    const tokenResponse = await fetch(url,options);
-    const {token} = await tokenResponse.json();
+      const {url, options} = TOKEN_POST({username, password});
+  
+      const tokenResponse = await fetch(url,options);
 
-    window.localStorage.setItem('token', token);
+      if(!tokenResponse.ok) throw new Error(`Error: ${tokenResponse.statusText}`);
+      const {token} = await tokenResponse.json();
+  
+      window.localStorage.setItem('token', token);
+  
+      await getUser(token);
 
-    getUser(token)
+      navigate('/conta');
+    } catch (error) {
+      setError(error.message);
+      setLogged(false);
+    }finally{
+      setLoading(false);
+    }
   }
   return (
-    <UserContext.Provider value={{userLogin, userData}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{userLogin, userLogout, userData, error, logged, loading}}>{children}</UserContext.Provider>
   )
 }
