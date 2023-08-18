@@ -5,6 +5,8 @@ import LoginCreate from '../../Components/LoginCreate/LoginCreate'
 import LoginPasswordLost from '../../Components/LoginPasswordLost/LoginPasswordLost'
 import LoginPasswordReset from '../../Components/LoginPasswordReset/LoginPasswordReset'
 import { UserContext } from '../../../../UserContext'
+import { LoginStyled } from './Login.style'
+import {login} from "../../../../Assets/login.jpg"
 
 type Props = {}
 
@@ -16,16 +18,16 @@ function Login(props: Props){
     return <Navigate to="/conta"/>
   }
   return (
-    <div>
-
-      <Routes>
-        <Route path='/' element={<LoginForm/>}/>
-        <Route path='criar' element={<LoginCreate/>}/>
-        <Route path='perdeu' element={<LoginPasswordLost/>}/>
-        <Route path='resetar' element={<LoginPasswordReset/>}/>
-      </Routes>
-
-    </div>
+    <LoginStyled>
+      <div className='loginForms'>
+        <Routes>
+          <Route path='/' element={<LoginForm/>}/>
+          <Route path='criar' element={<LoginCreate/>}/>
+          <Route path='perdeu' element={<LoginPasswordLost/>}/>
+          <Route path='resetar' element={<LoginPasswordReset/>}/>
+        </Routes>
+      </div>
+    </LoginStyled>
   )
 }
 
