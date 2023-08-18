@@ -10,7 +10,7 @@ type Props = {}
 
 function Header(props: Props):JSX.Element{
 
-  const {userData, userLogout} = useContext(UserContext);
+  const {userData} = useContext(UserContext);
 
   return (
     <HeaderStyled>
@@ -29,7 +29,6 @@ function Header(props: Props):JSX.Element{
               <Usuario className="userIcon"/>
             </Link>
             )}
-            <button onClick={userLogout}>SAIR</button>
         </nav>
     </HeaderStyled>
   )
