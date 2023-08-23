@@ -4,6 +4,8 @@ import Button from '../../../../Common/Components/Forms/Button/Button';
 import useForm from '../../../../Common/CustomHooks/useForm';
 import { CREATE_USER } from '../../../../Common/api';
 import { UserContext } from '../../../../UserContext';
+import useFetch from '../../../../Common/CustomHooks/useFEtch';
+import Error from '../../../../Common/Components/Error/Error';
 
 type Props = {}
 
@@ -12,7 +14,8 @@ function LoginCreate(props: Props):JSX.Element{
   const email = useForm('email');
   const password = useForm('password');
 
-  const {userLogin} = useContext(UserContext)
+  const {userLogin} = useContext(UserContext);
+  const {loading, error, request} = useFetch()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
@@ -21,9 +24,9 @@ function LoginCreate(props: Props):JSX.Element{
       email: email.value, 
       password: password.value}
     )
-    const response = await fetch(url, options);
+    const {response} = await request(url, options);
 
-    if(response.ok){
+    if(response && response.ok){
       userLogin(username.value, password.value);
     }
   }
@@ -34,7 +37,8 @@ function LoginCreate(props: Props):JSX.Element{
         <Input label="Usuário" type='text' name='username'{...username}/>
         <Input label="Email" type='email' name='email' {...email}/>
         <Input label="Senha" type='password' name='password'{...password}/>
-        <Button>Cadastrar</Button>
+        {loading ? <Button disabled>Cadastrando...</Button>: <Button>Cadastrar</Button>}
+        {error && <Error message={error}/>}
       </form>
     </section>
   )
