@@ -52,10 +52,12 @@ export function UserStorage({children}: IUserContext){
           setLoading(false);
         }
         
+      }else{
+        setLogged(false);
       }
     }
     autoLogin();
-  },[userLogout])
+  },[])
 
 
 
