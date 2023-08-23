@@ -14,6 +14,10 @@ const types: Types = {
     regex: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
     message: 'Digite um e-mail válido.',
   },
+  password:{
+    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+    message: 'A senha precisa ter 1 caractere maiúsculo, 1 minúsculo e 1 digito. Com no mmo 8 caracteres.'
+  }
 };
 
 const useForm = (type?: string) => {

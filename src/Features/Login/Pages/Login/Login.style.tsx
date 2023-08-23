@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-const imagePath = "../../../../Assets/login.jpg";
+
 export const LoginStyled = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;

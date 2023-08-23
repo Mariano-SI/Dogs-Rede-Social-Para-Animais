@@ -29,8 +29,7 @@ export function UserStorage({children}: IUserContext){
     setLoading(false);
     setLogged(false);
     window.localStorage.setItem("token", '');
-    navigate('/login')
-  }, [navigate]);
+  }, []);
 
   useEffect(()=>{
     async function autoLogin() {
@@ -52,10 +51,12 @@ export function UserStorage({children}: IUserContext){
           setLoading(false);
         }
         
+      }else{
+        setLogged(false);
       }
     }
     autoLogin();
-  },[userLogout])
+  },[])
 
 
 
