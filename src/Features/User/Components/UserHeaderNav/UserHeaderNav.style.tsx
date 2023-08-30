@@ -49,6 +49,7 @@ export const UserHeaderNavStyled = styled.nav`
             transform: translateX(-10px);
             opacity: 0;
             background: white;
+            pointer-events:none;
 
             a, button{
                 display: flex;
@@ -78,6 +79,7 @@ export const UserHeaderNavStyled = styled.nav`
             transform: initial;
             opacity: 1;
             z-index: 100;
+            pointer-events:initial;
         `
     }
    
