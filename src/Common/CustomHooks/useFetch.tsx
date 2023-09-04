@@ -19,7 +19,6 @@ const useFetch = () => {
             if(response.ok === false){
                 throw new Error(json.message);
             }
-            console.log("aqui")
         } catch (error) {
             json = null;
             setError(error.message)
