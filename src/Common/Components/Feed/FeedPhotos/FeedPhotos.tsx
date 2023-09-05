@@ -5,10 +5,13 @@ import { GET_PHOTOS } from '../../../api';
 import Error from '../../Error/Error';
 import Loading from '../../Loading/Loading';
 import { FeedPhotosStyled } from './FeedPhotos.style';
+import IPhoto from '../../../interfaces/IPhoto';
 
+interface IFeedPhotos{
+  setOnModalPhoto: (photo: IPhoto | null) => void;
+}
 
-
-const FeedPhotos = () => {
+const FeedPhotos = ({setOnModalPhoto}: IFeedPhotos) => {
 
   const {data, loading, error, request} = useFetch();
 
@@ -27,7 +30,12 @@ const FeedPhotos = () => {
   if(data){
     return (
       <FeedPhotosStyled className='animeLeft'>
-        {Array.isArray(data) && data.map((photo)=><FeedPhotosItem key={photo.id} photo={photo} />)}
+        {Array.isArray(data) && data.map((photo)=>(
+          <FeedPhotosItem 
+            key={photo.id} 
+            photo={photo} 
+            setOnModalPhoto={setOnModalPhoto}
+          />))}
       </FeedPhotosStyled>
     )
   }

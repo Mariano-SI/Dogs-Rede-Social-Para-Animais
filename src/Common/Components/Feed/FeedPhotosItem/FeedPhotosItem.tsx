@@ -1,25 +1,21 @@
 import React from 'react'
 import { FeedPhotosItemStyled } from './FeedPhotosItem.style';
 import {ReactComponent as Views} from '../../../../Assets/visualizacao.svg'
+import IPhoto from '../../../interfaces/IPhoto';
 
-
-interface IPhotoPostItem {
-  photo:{
-    acessos: string;
-    author: string;
-    date: string;
-    id: number;
-    idade: string;
-    peso: string;
-    src: string;
-    title: string;
-    total_comments: string;
-  }
+interface IFeedPhotosItem{
+  photo: IPhoto,
+  setOnModalPhoto: (photo: IPhoto | null) => void
 }
 
-const FeedPhotosItem = ({photo}: IPhotoPostItem) => {
+const FeedPhotosItem = ({photo, setOnModalPhoto}: IFeedPhotosItem) => {
+
+  function handleClick(){
+    setOnModalPhoto(photo);
+  }
+
   return (
-    <FeedPhotosItemStyled>
+    <FeedPhotosItemStyled onClick={handleClick}>
       <img src={photo.src} alt={photo.title} />
       <span className='views'><Views className='viewsIcon'/> {photo.acessos}</span>
     </FeedPhotosItemStyled>
