@@ -9,9 +9,10 @@ import PhotoContent from '../../../../Features/Photo/Components/PhotoContent/Pho
 
 interface IFeedModal{
   photo?: IPhoto;
+  setOnModalPhoto: (photo: IPhoto | null) => void;
 }
 
-const FeedModal = ({photo}: IFeedModal) => {
+const FeedModal = ({photo, setOnModalPhoto}: IFeedModal) => {
   const {data, error, loading, request} = useFetch();
 
   useEffect(()=>{
@@ -21,8 +22,14 @@ const FeedModal = ({photo}: IFeedModal) => {
     }
   },[photo, request])
 
+  function handleOutsideClick(e: React.MouseEvent<HTMLDivElement>):void{
+    if(e.target === e.currentTarget){
+      setOnModalPhoto(null);
+    }    
+  } 
+
   return (
-    <FeedModalStyled>
+    <FeedModalStyled onClick={handleOutsideClick}>
       {error && <Error message={error}/>}
       {loading && <Loading/>}
       {data ? <PhotoContent data={data}/>: ''}

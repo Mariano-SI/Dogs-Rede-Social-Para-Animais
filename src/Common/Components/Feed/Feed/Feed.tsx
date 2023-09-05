@@ -11,7 +11,7 @@ function Feed(){
 
     return(
         <FeedStyled >
-            {onModalPhoto && <FeedModal photo={onModalPhoto}/>}
+            {onModalPhoto && <FeedModal photo={onModalPhoto} setOnModalPhoto={setOnModalPhoto}/>}
             <FeedPhotos setOnModalPhoto={setOnModalPhoto}/>
         </FeedStyled>
     )
