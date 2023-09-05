@@ -26,11 +26,9 @@ const PhotoContent = ({data}: IPhotoContent) => {
                     <h1 className='title'>
                         <Link to={`/foto/${photo.id}`}>{photo.title}</Link>
                     </h1>
-                    <ul className="attributes">
+                     <ul className="attributes">
                         <li>{photo.peso} kg</li>
                         <li>{photo.idade} {photo.idade <= 1 ? "ano": "anos"}</li>
-                        <li></li>
-                        <li></li>
                     </ul>
                 </div>
             </div>
