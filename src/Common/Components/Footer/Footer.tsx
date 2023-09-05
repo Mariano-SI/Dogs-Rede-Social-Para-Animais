@@ -4,7 +4,7 @@ type Props = {}
 
 function Footer(props: Props){
   return (
-    <div>Footer</div>
+    <div></div>
   )
 }
 

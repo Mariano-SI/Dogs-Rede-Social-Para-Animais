@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
 
-
-export const HomeStyled = styled.section``
+export const FeedStyled = styled.div``
     

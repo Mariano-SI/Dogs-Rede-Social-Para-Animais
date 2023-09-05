@@ -1,5 +1,7 @@
 export const API_URL = 'https://dogsapi.origamid.dev/json/';
 
+interface IGetPhotos {page: number, total:number , user: string | number}
+
 export function TOKEN_POST(body:unknown){
     return{
         url: API_URL + "jwt-auth/v1/token",
@@ -59,6 +61,16 @@ export function PHOST_POST( formData: unknown, token:string,){
                 Authorization: 'Bearer ' + token,
             },
             body: formData
+        },
+    }
+}
+
+export function GET_PHOTOS({page, total, user}: IGetPhotos){
+    return{
+        url: `${API_URL}api/photo/?_page=${page}&_total=${total}&_user=${user}`,
+        options:{
+            method:"GET",
+            cache: 'no-store'
         },
     }
 }
