@@ -3,7 +3,7 @@ import React, {useState, useCallback} from 'react'
 
 
 const useFetch = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<unknown| Array<unknown>>(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -38,4 +38,4 @@ const useFetch = () => {
   
 }
 
-export default useFetch
+export default useFetch;
