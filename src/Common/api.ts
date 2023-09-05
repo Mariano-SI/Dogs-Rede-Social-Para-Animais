@@ -74,3 +74,14 @@ export function GET_PHOTOS({page, total, user}: IGetPhotos){
         },
     }
 }
+
+
+export function GET_PHOTO(photoId:number){
+    return{
+        url: `${API_URL}api/photo/${photoId}`,
+        options:{
+            method:"GET",
+            cache: 'no-store'
+        },
+    }
+}
