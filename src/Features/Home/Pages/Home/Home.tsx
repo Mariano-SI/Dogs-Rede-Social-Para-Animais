@@ -1,10 +1,13 @@
 import React from 'react'
+import { HomeStyled } from './Home.style'
+import Feed from '../../../../Common/Components/Feed/Feed/Feed'
 
-type Props = {}
 
-function Home(props: Props){
+function Home(){
   return (
-    <div>Home</div>
+    <HomeStyled className=' container mainContainer'>
+      <Feed/>
+    </HomeStyled>
   )
 }
 
