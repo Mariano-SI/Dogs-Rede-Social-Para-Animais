@@ -3,6 +3,7 @@ import IPhotoData from '../../../../Common/interfaces/IPhotoData';
 import { PhotoContentStyled } from './PhotoContent.style';
 import { Link } from 'react-router-dom';
 import PhotoComments from '../PhotoComments/PhotoComments';
+import { ReactComponent as ViewsIcon } from "../../../../Assets/visualizacao-black.svg";
 
 interface IPhotoContent{
     data: IPhotoData;
@@ -19,9 +20,9 @@ const PhotoContent = ({data}: IPhotoContent) => {
             </div>
             <div className='imageDetails'>
                 <div>
-                    <p>
+                    <p className="author">
                         <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
-                        <span className='views'>{photo.acessos}</span>
+                        <span className='views'><ViewsIcon className='viewsIcon'/>{photo.acessos}</span>
                     </p>
                     <h1 className='title'>
                         <Link to={`/foto/${photo.id}`}>{photo.title}</Link>
