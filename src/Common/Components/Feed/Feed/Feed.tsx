@@ -1,13 +1,18 @@
+import React, {useState} from 'react'
 import { FeedStyled } from "./Feed.style";
 import FeedModal from "../FeedModal/FeedModal";
 import FeedPhotos from "../FeedPhotos/FeedPhotos";
+import IPhoto from '../../../interfaces/IPhoto';
 
 
 function Feed(){
+
+    const [onModalPhoto, setOnModalPhoto] = useState<IPhoto | null>(null);
+
     return(
         <FeedStyled >
-            <FeedModal/>
-            <FeedPhotos/>
+            {onModalPhoto && <FeedModal photo={onModalPhoto}/>}
+            <FeedPhotos setOnModalPhoto={setOnModalPhoto}/>
         </FeedStyled>
     )
 }
