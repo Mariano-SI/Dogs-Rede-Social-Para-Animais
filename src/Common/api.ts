@@ -85,3 +85,18 @@ export function GET_PHOTO(photoId:number){
         },
     }
 }
+
+
+export function POST_COMMENT(id, body){
+    return{
+        url: `${API_URL}api/comment/${id}`,
+        options:{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json',
+                 Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+            },
+            body: JSON.stringify(body)
+        },
+    }
+}
