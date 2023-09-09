@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import { UserContext } from '../../../../UserContext'
 import PhotoCommentsForm from '../PhotoCommentsForm/PhotoCommentsForm';
 import IComment from '../../../../Common/interfaces/IComment';
-import { PhotoCommentsStyled } from './PhotoComments.style';
+import styles from './PhotComments.module.css'
 
 interface IPhotoComments{
   id: number;
@@ -13,10 +13,19 @@ const PhotoComments = ({id, comments}: IPhotoComments) => {
   const [photoComments, setPhotoComments] = useState(()=>comments)
   const {logged} = useContext(UserContext);
 
+  const commentContainer = useRef<HTMLUListElement>(null);
+
+  console.log(commentContainer.current)
+
+  useEffect(()=>{
+    if(commentContainer.current){
+      commentContainer.current.scrollTop= commentContainer.current.scrollHeight;
+    }
+  }, [photoComments])
 
   return (
     <>
-      <ul className='comments'>
+      <ul className={styles.comments} ref={commentContainer}>
         {photoComments.map((comment)=>(
             <li key={comment.comment_ID}>
               <b>{comment.comment_author}: </b>

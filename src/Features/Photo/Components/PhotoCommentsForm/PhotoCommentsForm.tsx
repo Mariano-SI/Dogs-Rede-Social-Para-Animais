@@ -4,6 +4,7 @@ import useFetch from '../../../../Common/CustomHooks/useFEtch';
 import { POST_COMMENT } from '../../../../Common/api';
 import IComment from '../../../../Common/interfaces/IComment';
 import Error from '../../../../Common/Components/Error/Error';
+import { PhotoCommentsFormStyled } from './PhotoCommentsForm.style';
 
 interface IPhotoCommentsForm{
   id: number;
@@ -20,27 +21,26 @@ const PhotoCommentsForm = ({id, setPhotoComments}: IPhotoCommentsForm) => {
     e.preventDefault();
     const {url, options} = POST_COMMENT(id, {comment})
     const {response, json} = await request(url, options);
-    console.log(json);
+ 
     if(response && response.ok){
       setPhotoComments((comments:  IComment[])=> [...comments, json]);
       setComment('');
     }
-
-
   } 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <PhotoCommentsFormStyled onSubmit={handleSubmit}>
       <textarea 
+      className='textArea'
         placeholder='Comente...'
         value={comment} 
         onChange={({target}) => setComment(target.value)}
         id="comment"
         name="comment"
       />
-      <button><Enviar/></button>
+      <button className='newCommentButton'><Enviar/></button>
       {error && <Error message={error}/>}
-    </form>
+    </PhotoCommentsFormStyled>
   )
 }
 
