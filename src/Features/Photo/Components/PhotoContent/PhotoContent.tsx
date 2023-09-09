@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import IPhotoData from '../../../../Common/interfaces/IPhotoData';
 import { PhotoContentStyled } from './PhotoContent.style';
 import { Link } from 'react-router-dom';
 import PhotoComments from '../PhotoComments/PhotoComments';
 import { ReactComponent as ViewsIcon } from "../../../../Assets/visualizacao-black.svg";
+import PhotoDelete from '../PhotoDelete/PhotoDelete';
+import { UserContext } from '../../../../UserContext';
 
 interface IPhotoContent{
     data: IPhotoData;
@@ -13,6 +15,9 @@ const PhotoContent = ({data}: IPhotoContent) => {
 
     const {photo, comments} = data;
 
+    const {userData} = useContext(UserContext);
+
+
     return (
         <PhotoContentStyled>
             <div className='img'>
@@ -21,7 +26,10 @@ const PhotoContent = ({data}: IPhotoContent) => {
             <div className='imageDetails'>
                 <div>
                     <p className="author">
-                        <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+                        { userData && userData.username === photo.author?
+                            <PhotoDelete id={photo.id}/>
+                            :
+                            <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>}
                         <span className='views'><ViewsIcon className='viewsIcon'/>{photo.acessos}</span>
                     </p>
                     <h1 className='title'>
