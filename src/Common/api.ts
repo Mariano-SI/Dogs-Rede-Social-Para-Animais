@@ -100,3 +100,15 @@ export function POST_COMMENT(id, body){
         },
     }
 }
+
+export function PHOTO_DELETE(id:number){
+    return{
+        url: `${API_URL}api/photo/${id}`,
+        options:{
+            method:"DELETE",
+            headers:{
+                 Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+            },
+        }
+    }
+}
