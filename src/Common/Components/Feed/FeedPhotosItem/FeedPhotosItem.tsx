@@ -2,6 +2,7 @@ import React from 'react'
 import { FeedPhotosItemStyled } from './FeedPhotosItem.style';
 import {ReactComponent as Views} from '../../../../Assets/visualizacao.svg'
 import IPhoto from '../../../interfaces/IPhoto';
+import ImageSkeleton from '../../ImageSkeleton/ImageSkeleton';
 
 interface IFeedPhotosItem{
   photo: IPhoto,
@@ -16,7 +17,7 @@ const FeedPhotosItem = ({photo, setOnModalPhoto}: IFeedPhotosItem) => {
 
   return (
     <FeedPhotosItemStyled onClick={handleClick}>
-      <img src={photo.src} alt={photo.title} />
+      <ImageSkeleton alt={photo.title} src={photo.src}/>
       <span className='views'><Views className='viewsIcon'/> {photo.acessos}</span>
     </FeedPhotosItemStyled>
   )
