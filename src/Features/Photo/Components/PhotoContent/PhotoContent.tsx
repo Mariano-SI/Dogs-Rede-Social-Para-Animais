@@ -4,6 +4,7 @@ import { PhotoContentStyled } from './PhotoContent.style';
 import { Link } from 'react-router-dom';
 import PhotoComments from '../PhotoComments/PhotoComments';
 import { ReactComponent as ViewsIcon } from "../../../../Assets/visualizacao-black.svg";
+import ImageSkeleton from '../../../../Common/Components/ImageSkeleton/ImageSkeleton';
 
 interface IPhotoContent{
     data: IPhotoData;
@@ -16,7 +17,7 @@ const PhotoContent = ({data}: IPhotoContent) => {
     return (
         <PhotoContentStyled>
             <div className='img'>
-                <img src={photo.src} alt={photo.title} />
+                <ImageSkeleton alt={photo.title} src={photo.src}/>
             </div>
             <div className='imageDetails'>
                 <div>

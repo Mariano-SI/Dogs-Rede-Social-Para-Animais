@@ -17,7 +17,9 @@ export const FeedPhotosItemStyled = styled.li`
         grid-row: initial;
         } 
     }
-
+    div{
+        grid-area: 1/1;
+    }
     img{
         grid-area: 1/1;
     }
