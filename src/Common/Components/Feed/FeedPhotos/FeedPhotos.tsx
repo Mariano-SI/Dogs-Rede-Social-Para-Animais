@@ -9,21 +9,27 @@ import IPhoto from '../../../interfaces/IPhoto';
 
 interface IFeedPhotos{
   setOnModalPhoto: (photo: IPhoto | null) => void;
+  user?:string;
+  page:number;
+  setInfinite:(value: boolean)=>void;
 }
 
-const FeedPhotos = ({setOnModalPhoto}: IFeedPhotos) => {
+const FeedPhotos = ({setOnModalPhoto, user, page, setInfinite}: IFeedPhotos) => {
 
   const {data, loading, error, request} = useFetch();
 
   useEffect(()=>{
     async function fetchPhotos() {
-      const {url, options} = GET_PHOTOS({page: 1, total: 6, user: 0})
+      const total = 3;
+      const {url, options} = GET_PHOTOS({page, total: 3, user: user ? user : 0})
       const {response, json} = await request(url, options);
-      //console.log(json)
+      if(response && response.ok && json.length < total){
+        setInfinite(false);
+      }
     }
 
     fetchPhotos();
-  },[request]);
+  },[request,user, page,setInfinite]);
 
   if(error) return <Error message={error}/>
   if(loading) return <Loading/>
