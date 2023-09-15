@@ -76,7 +76,7 @@ export function GET_PHOTOS({page, total, user}: IGetPhotos){
 }
 
 
-export function GET_PHOTO(photoId:number){
+export function GET_PHOTO(photoId:number | string | undefined){
     return{
         url: `${API_URL}api/photo/${photoId}`,
         options:{

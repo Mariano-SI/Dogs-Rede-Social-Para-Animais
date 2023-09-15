@@ -7,9 +7,10 @@ import styles from './PhotComments.module.css'
 interface IPhotoComments{
   id: number;
   comments: IComment[];
+  single?: boolean;
 }
 
-const PhotoComments = ({id, comments}: IPhotoComments) => {
+const PhotoComments = ({id, comments, single}: IPhotoComments) => {
   const [photoComments, setPhotoComments] = useState(()=>comments)
   const {logged} = useContext(UserContext);
 
@@ -25,7 +26,7 @@ const PhotoComments = ({id, comments}: IPhotoComments) => {
 
   return (
     <>
-      <ul className={styles.comments} ref={commentContainer}>
+      <ul className={`${styles.comments} ${single ? styles.single: ''}`} ref={commentContainer}>
         {photoComments.map((comment)=>(
             <li key={comment.comment_ID}>
               <b>{comment.comment_author}: </b>
@@ -33,7 +34,7 @@ const PhotoComments = ({id, comments}: IPhotoComments) => {
             </li>
         ))}
       </ul>
-      {logged && <PhotoCommentsForm id={id} setPhotoComments={setPhotoComments}/>}
+      {logged && <PhotoCommentsForm id={id} setPhotoComments={setPhotoComments} single={single}/>}
     </>
   )
 }

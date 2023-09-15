@@ -9,9 +9,10 @@ import { PhotoCommentsFormStyled } from './PhotoCommentsForm.style';
 interface IPhotoCommentsForm{
   id: number;
   setPhotoComments:(comments) => void;
+  single?: boolean;
 }
 
-const PhotoCommentsForm = ({id, setPhotoComments}: IPhotoCommentsForm) => {
+const PhotoCommentsForm = ({id, setPhotoComments, single}: IPhotoCommentsForm) => {
 
   const {request, error} = useFetch();
 
@@ -29,7 +30,7 @@ const PhotoCommentsForm = ({id, setPhotoComments}: IPhotoCommentsForm) => {
   } 
 
   return (
-    <PhotoCommentsFormStyled onSubmit={handleSubmit}>
+    <PhotoCommentsFormStyled onSubmit={handleSubmit} single={single}>
       <textarea 
       className='textArea'
         placeholder='Comente...'

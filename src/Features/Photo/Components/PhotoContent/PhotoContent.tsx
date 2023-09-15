@@ -9,10 +9,11 @@ import PhotoDelete from '../PhotoDelete/PhotoDelete';
 import { UserContext } from '../../../../UserContext';
 
 interface IPhotoContent{
-    data: IPhotoData;
+    data: IPhotoData ;
+    single?:boolean;
 }
 
-const PhotoContent = ({data}: IPhotoContent) => {
+const PhotoContent = ({data, single}: IPhotoContent) => {
 
     const {photo, comments} = data;
 
@@ -20,7 +21,7 @@ const PhotoContent = ({data}: IPhotoContent) => {
 
 
     return (
-        <PhotoContentStyled>
+        <PhotoContentStyled single={single}>
             <div className='img'>
                 <ImageSkeleton alt={photo.title} src={photo.src}/>
             </div>
@@ -42,7 +43,7 @@ const PhotoContent = ({data}: IPhotoContent) => {
                     </ul>
                 </div>
             </div>
-            <PhotoComments id={photo.id} comments={comments}/>
+            <PhotoComments id={photo.id} single={single} comments={comments}/>
         </PhotoContentStyled>
     )
 }
