@@ -13,6 +13,12 @@ export const PhotoContentStyled = styled.div`
     transform: scale(.8);
     animation: scaleUp .3s forwards;
 
+    
+    
+    .img{
+        grid-row: 1/4;
+    }
+
     @media (max-width: 64rem){
         height: auto;
         max-height: calc(100vh - 4rem);
@@ -34,9 +40,7 @@ export const PhotoContentStyled = styled.div`
     .imageDetails{
         padding: 2rem 2rem 0 2rem;
     }
-    .img{
-        grid-row: 1/4;
-    }
+    
 
     .author{
         opacity: 0.5;
@@ -79,5 +83,23 @@ export const PhotoContentStyled = styled.div`
        width: 2px;
        background: #333;
        margin-top: 5px;
+    }
+
+    ${(props) =>
+            props.single && 
+            `
+            grid-template-columns: 1fr;
+            height:auto;
+            
+            .img{
+                grid-row: 1;
+                border-radius:.4rem;
+                overflow:hidden;
+            }
+
+            .imageDetails{
+                padding: 1rem 0px 0px 0px;
+            }
+            `
     }
 `
