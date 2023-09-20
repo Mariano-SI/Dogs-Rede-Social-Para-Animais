@@ -18,7 +18,7 @@ function LoginPasswordReset():JSX.Element{
   const{error, loading, request} = useFetch();
 
   useEffect(()=>{
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search)
     const key = params.get('key');
     const login = params.get('login');
 
