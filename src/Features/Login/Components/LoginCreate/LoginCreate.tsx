@@ -12,7 +12,7 @@ type Props = {}
 function LoginCreate(props: Props):JSX.Element{
   const username = useForm();
   const email = useForm('email');
-  const password = useForm('password');
+  const password = useForm();
 
   const {userLogin} = useContext(UserContext);
   const {loading, error, request} = useFetch()
