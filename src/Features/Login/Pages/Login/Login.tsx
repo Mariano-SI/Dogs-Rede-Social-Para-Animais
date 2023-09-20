@@ -7,6 +7,7 @@ import LoginPasswordReset from '../../Components/LoginPasswordReset/LoginPasswor
 import { UserContext } from '../../../../UserContext'
 import { LoginStyled } from './Login.style'
 import {login} from "../../../../Assets/login.jpg"
+import NotFound from '../../../../Common/Components/NotFound/NotFound'
 
 type Props = {}
 
@@ -25,6 +26,7 @@ function Login(props: Props){
           <Route path='criar' element={<LoginCreate/>}/>
           <Route path='perdeu' element={<LoginPasswordLost/>}/>
           <Route path='resetar' element={<LoginPasswordReset/>}/>
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </div>
     </LoginStyled>
