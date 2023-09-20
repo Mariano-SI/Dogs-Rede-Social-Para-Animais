@@ -32,19 +32,19 @@ function LoginPasswordReset():JSX.Element{
     event.preventDefault();
     if(password.validate()){
 
+      const {url, options} = PASSWORD_RESET({
+        login,
+        key,
+        password: password.value
+      })
+      
+      const {response} = await request(url, options);
+      
+      if(response && response.ok){
+        navigate('/login');
+      }
+      
     }
-    const {url, options} = PASSWORD_RESET({
-      login,
-      key,
-      password: password.value
-    })
-
-    const {response} = await request(url, options);
-
-    if(response && response.ok){
-      navigate('/login');
-    }
-  }
   }
 
   return (
