@@ -20,6 +20,7 @@ export const LoginFormStyled = styled.section`
     }
     .cadastro{
         margin-top: 4rem;
+        margin-bottom: 4rem;
     }
 
     .cadastro p{

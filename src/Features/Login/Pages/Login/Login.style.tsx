@@ -16,6 +16,7 @@ export const LoginStyled = styled.section`
     .loginForms{
         max-width: 30rem;
         padding: 2rem;
+        margin-top: 20vh;
     }
 
     @media (max-width: 40rem) {

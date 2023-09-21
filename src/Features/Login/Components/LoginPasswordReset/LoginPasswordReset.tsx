@@ -49,7 +49,7 @@ function LoginPasswordReset():JSX.Element{
   
 
   return (
-    <LoginPasswordResetStyled>
+    <LoginPasswordResetStyled className='animeLeft'>
       <Head title='Resete a senha'/>
       <h1 className="title">Resete a senha</h1>
       <form onSubmit={handleSubmit}>

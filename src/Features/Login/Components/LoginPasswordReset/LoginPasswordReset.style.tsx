@@ -1,3 +1,3 @@
 import styled from "styled-components";
 
-export const LoginPasswordResetStyled = styled.div``
+export const LoginPasswordResetStyled = styled.section``
