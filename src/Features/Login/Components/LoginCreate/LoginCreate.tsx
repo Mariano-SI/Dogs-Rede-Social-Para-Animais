@@ -6,6 +6,7 @@ import { CREATE_USER } from '../../../../Common/api';
 import { UserContext } from '../../../../UserContext';
 import useFetch from '../../../../Common/CustomHooks/useFEtch';
 import Error from '../../../../Common/Components/Error/Error';
+import Head from '../../../../Common/Components/Head/Head';
 
 type Props = {}
 
@@ -32,6 +33,7 @@ function LoginCreate(props: Props):JSX.Element{
   }
   return (
     <section className='animeLeft'>
+      <Head title='Crie Sua Conta'/>
       <h1 className='title'>Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type='text' name='username'{...username}/>

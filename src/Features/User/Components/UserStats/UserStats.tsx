@@ -1,10 +1,13 @@
 import React from 'react'
+import Head from '../../../../Common/Components/Head/Head'
 
 type Props = {}
 
 const UserStats = (props: Props) => {
   return (
-    <div>UserStats</div>
+    <div>
+      <Head title='Estatísticas' />
+    </div>
   )
 }
 
