@@ -10,6 +10,7 @@ export const UserStatsGraphsStyled = styled.section`
         border-radius: 1.2rem;
         display: grid;
         align-items: center;
+        margin-bottom: 2rem;
     }
 
     .total{
@@ -20,7 +21,7 @@ export const UserStatsGraphsStyled = styled.section`
 
     @media (max-width:40rem) {
         grid-template-columns: 1fr;
-        margin-bottom: 2rem;
+        
 
         .total{
             grid-column: 1;
