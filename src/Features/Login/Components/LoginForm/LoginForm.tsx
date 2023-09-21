@@ -38,7 +38,7 @@ function LoginForm(props: Props): JSX.Element{
         ):(
           <Button>Entrar</Button>
         )}
-        {error && <Error message={error}/>}
+        {error && <Error message={"Dados incorretos."}/>}
       </form>
       <Link className='perdeuLink' to="/login/perdeu">Perdeu a Senha?</Link>
       <div className='cadastro'>
