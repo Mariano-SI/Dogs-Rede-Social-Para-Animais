@@ -7,6 +7,7 @@ import UserStats from '../../Components/UserStats/UserStats'
 import Feed from '../../../../Common/Components/Feed/Feed/Feed'
 import { UserContext } from '../../../../UserContext'
 import NotFound from '../../../../Common/Components/NotFound/NotFound'
+import Head from '../../../../Common/Components/Head/Head'
 
 
 
@@ -16,6 +17,7 @@ const User = () => {
 
   return (
     <UserStyled className='container'>
+      <Head title='Minha Conta' />
       <UserHeader/>
       <Routes>
         <Route path='/' element={<Feed user={userData.id}/>}/>

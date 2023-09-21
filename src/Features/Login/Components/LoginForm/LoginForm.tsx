@@ -6,6 +6,7 @@ import useForm from '../../../../Common/CustomHooks/useForm';
 import { UserContext } from '../../../../UserContext';
 import Error from '../../../../Common/Components/Error/Error';
 import { LoginFormStyled } from './LoginForm.style';
+import Head from '../../../../Common/Components/Head/Head';
 
 
 type Props = {}
@@ -26,6 +27,7 @@ function LoginForm(props: Props): JSX.Element{
 
   return (
     <LoginFormStyled className="animeLeft">
+      <Head title='Login' />
       <h1 className='title'>Login</h1>
       <form className='form' onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name='username' {...username}/>

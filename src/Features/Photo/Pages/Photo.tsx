@@ -6,6 +6,7 @@ import Error from '../../../Common/Components/Error/Error';
 import Loading from '../../../Common/Components/Loading/Loading';
 import PhotoContent from '../Components/PhotoContent/PhotoContent';
 import IPhotoData from '../../../Common/interfaces/IPhotoData';
+import Head from '../../../Common/Components/Head/Head';
 
 
 
@@ -19,13 +20,16 @@ const Photo = () => {
         const {url, options} = GET_PHOTO(id);
 
         request(url, options)
-    }, [request, id])
+    }, [request, id]);
 
     if(error) return <Error message={error}/>
     if(loading) return <Loading/>
     if(data){
         return(
-            <section className='container mainContainer'>{<PhotoContent single={true} data={data}/>}</section>
+            <section className='container mainContainer'>
+                <Head title={data.photo.title}/>
+                {<PhotoContent single={true} data={data}/>}
+            </section>
         )
     } 
     

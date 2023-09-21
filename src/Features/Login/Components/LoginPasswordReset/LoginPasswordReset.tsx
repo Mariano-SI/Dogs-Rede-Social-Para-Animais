@@ -7,6 +7,7 @@ import { PASSWORD_RESET } from '../../../../Common/api';
 import useFetch from '../../../../Common/CustomHooks/useFEtch';
 import Error from '../../../../Common/Components/Error/Error';
 import { useNavigate } from 'react-router-dom';
+import Head from '../../../../Common/Components/Head/Head';
 
 function LoginPasswordReset():JSX.Element{
 
@@ -31,24 +32,25 @@ function LoginPasswordReset():JSX.Element{
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     if(password.validate()){
-
-    }
-    const {url, options} = PASSWORD_RESET({
-      login,
-      key,
-      password: password.value
-    })
-
-    const {response} = await request(url, options);
-
-    if(response && response.ok){
-      navigate('/login');
+      const {url, options} = PASSWORD_RESET({
+        login,
+        key,
+        password: password.value
+      })
+  
+      const {response} = await request(url, options);
+  
+      if(response && response.ok){
+        navigate('/login');
+      }
+      
     }
   }
-  }
+  
 
   return (
     <LoginPasswordResetStyled>
+      <Head title='Resete a senha'/>
       <h1 className="title">Resete a senha</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Nova senha" type='password' name='password' {...password}/>

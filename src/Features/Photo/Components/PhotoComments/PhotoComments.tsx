@@ -16,8 +16,6 @@ const PhotoComments = ({id, comments, single}: IPhotoComments) => {
 
   const commentContainer = useRef<HTMLUListElement>(null);
 
-  console.log(commentContainer.current)
-
   useEffect(()=>{
     if(commentContainer.current){
       commentContainer.current.scrollTop= commentContainer.current.scrollHeight;

@@ -6,6 +6,7 @@ import useForm from '../../../../Common/CustomHooks/useForm'
 import useFetch from '../../../../Common/CustomHooks/useFEtch'
 import { PASSWORD_LOST } from '../../../../Common/api'
 import Error from '../../../../Common/Components/Error/Error'
+import Head from '../../../../Common/Components/Head/Head'
 
 function LoginPasswordLost():JSX.Element{
 
@@ -28,6 +29,7 @@ function LoginPasswordLost():JSX.Element{
 
   return (
     <LoginPasswordLostStyled>
+      <Head title='Perdeu a senha'/>
       <h1 className='title'>Perdeu a senha?</h1>
       {data ? (
         <p style={{color:"#4C1"}}>{data}</p> 
