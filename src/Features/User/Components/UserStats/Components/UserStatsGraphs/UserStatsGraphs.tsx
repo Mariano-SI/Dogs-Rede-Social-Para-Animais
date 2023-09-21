@@ -26,7 +26,6 @@ const UserStatsGraphs = ({data}: IUserStatsGraphs) => {
         const graph = data.map((item)=>(
             {x:item.title, y:+item.acessos}
         ));
-            console.log(graph)
         setGraphData(graph);
 
         setTotal(data.map(({acessos})=> +acessos).reduce((a,b)=> a+b, 0));
